@@ -1,0 +1,34 @@
+{
+  "grammars": [
+    {
+      "name": "flatbuffers",
+      "camelcase": "FlatBuffers",
+      "scope": "source.fbs",
+      "path": ".",
+      "file-types": [".fbs"],
+      "injection-regex": "^flatbuffers$"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Flatbuffers grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "yuanchenxi95",
+        "email": "yuanchenxi95@gmail.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/yuanchenxi95/tree-sitter-flatbuffers"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}
