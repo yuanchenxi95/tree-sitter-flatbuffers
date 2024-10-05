@@ -13,8 +13,6 @@ function comma_separate(x) {
 module.exports = grammar({
   name: "flatbuffers",
 
-  // TODO: support '///' documentation.
-
   extras: ($) => [$.comment, /\s/],
 
   rules: {
@@ -26,6 +24,7 @@ module.exports = grammar({
         optional(
           repeat(
             choice(
+              $.documentation,
               $.namespace_decl,
               $.type_decl,
               $.enum_decl,
@@ -40,9 +39,10 @@ module.exports = grammar({
         ),
       ),
 
+    documentation: ($) => token(seq("///", /.*/)),
     include: ($) => seq("include", $.string_constant, ";"),
 
-    namespace_decl: ($) => seq("namespace", $.identifier, ";"),
+    namespace_decl: ($) => seq("namespace", $.full_ident, ";"),
 
     attribute_decl: ($) =>
       seq("attribute", choice($.identifier, seq('"', $.identifier, '"')), ";"),
@@ -65,7 +65,10 @@ module.exports = grammar({
         ),
         optional($.metadata),
         "{",
-        comma_separate($.enum_decl),
+        // $.identifier,
+        $.enumval_decl,
+        repeat(seq(",", $.enumval_decl)),
+        optional(","),
         "}",
       ),
 
@@ -118,10 +121,11 @@ module.exports = grammar({
         "float32",
         "float64",
         "string",
-        $.identifier,
+        $.full_ident,
         seq("[", $.type, "]"),
       ),
 
+    // TODO add support for PRC.
     rpc_decl: ($) =>
       seq("rpc_service", $.identifier, "{", repeat($.rpc_method), "}"),
 
@@ -139,7 +143,8 @@ module.exports = grammar({
 
     metadata: ($) => seq("(", comma_separate($.field_and_value), ")"),
 
-    field_and_value: ($) => seq($.identifier, ":", $.single_value),
+    field_and_value: ($) =>
+      seq($.identifier, optional(seq(":", $.single_value))),
 
     // single_value = fullIdent | ( [ "-" | "+" ] intLit ) | ( [ "-" | "+" ] floatLit ) | strLit | boolLit
     single_value: ($) => choice($.scalar, $.string_constant, $.full_ident),
@@ -222,7 +227,10 @@ module.exports = grammar({
 
     comment: ($) =>
       token(
-        choice(seq("//", /.*/), seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/")),
+        choice(
+          prec(1, seq("//", /.*/)),
+          seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/"),
+        ),
       ),
   },
 });
