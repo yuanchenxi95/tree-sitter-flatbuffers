@@ -1,0 +1,16 @@
+{
+  "name": "tree-sitter-flatbuffers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "grammar.js",
+  "types": "bindings/node",
+  "directories": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^3.3.3",
+    "tree-sitter-cli": "^0.23"
+  }
+}
