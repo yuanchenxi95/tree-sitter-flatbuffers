@@ -9,8 +9,13 @@
   },
   "author": "",
   "license": "MIT",
+  "scripts": {
+    "test": "npx tree-sitter test",
+    "generate": "npx tree-sitter generate",
+    "format": "npx prettier . --write"
+  },
   "devDependencies": {
     "prettier": "^3.3.3",
-    "tree-sitter-cli": "^0.23"
+    "tree-sitter-cli": "^0.24"
   }
 }
