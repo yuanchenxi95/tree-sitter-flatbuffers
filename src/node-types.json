@@ -115,11 +115,11 @@
           "named": true
         },
         {
-          "type": "scalar",
+          "type": "type",
           "named": true
         },
         {
-          "type": "type",
+          "type": "value",
           "named": true
         }
       ]
@@ -160,11 +160,34 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "float_lit",
+          "named": true
+        },
+        {
+          "type": "plus_minus_constant",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "float_lit",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "inf_token",
+          "named": true
+        },
+        {
+          "type": "nan_token",
           "named": true
         }
       ]
@@ -201,15 +224,24 @@
     }
   },
   {
+    "type": "inf_token",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "int_constant",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
           "type": "int_lit",
+          "named": true
+        },
+        {
+          "type": "plus_minus_constant",
           "named": true
         }
       ]
@@ -278,6 +310,25 @@
       "types": [
         {
           "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "plus_minus_constant",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "minus_token",
+          "named": true
+        },
+        {
+          "type": "plus_token",
           "named": true
         }
       ]
@@ -434,6 +485,10 @@
         {
           "type": "type_decl",
           "named": true
+        },
+        {
+          "type": "union_dcl",
+          "named": true
         }
       ]
     }
@@ -496,6 +551,75 @@
     }
   },
   {
+    "type": "union_dcl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "full_ident",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "metadata",
+          "named": true
+        },
+        {
+          "type": "union_field_decl",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "union_field_decl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "type",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "object",
+          "named": true
+        },
+        {
+          "type": "single_value",
+          "named": true
+        },
+        {
+          "type": "value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "\"",
     "named": false
   },
@@ -508,15 +632,7 @@
     "named": false
   },
   {
-    "type": "+",
-    "named": false
-  },
-  {
     "type": ",",
-    "named": false
-  },
-  {
-    "type": "-",
     "named": false
   },
   {
@@ -604,10 +720,6 @@
     "named": false
   },
   {
-    "type": "float_lit",
-    "named": true
-  },
-  {
     "type": "hex_lit",
     "named": true
   },
@@ -617,6 +729,14 @@
   },
   {
     "type": "include",
+    "named": false
+  },
+  {
+    "type": "inf",
+    "named": false
+  },
+  {
+    "type": "infinity",
     "named": false
   },
   {
@@ -644,11 +764,23 @@
     "named": false
   },
   {
+    "type": "minus_token",
+    "named": true
+  },
+  {
     "type": "namespace",
     "named": false
   },
   {
+    "type": "nan_token",
+    "named": true
+  },
+  {
     "type": "octal_lit",
+    "named": true
+  },
+  {
+    "type": "plus_token",
     "named": true
   },
   {

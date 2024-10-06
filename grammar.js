@@ -28,6 +28,8 @@ module.exports = grammar({
               $.namespace_decl,
               $.type_decl,
               $.enum_decl,
+              // Different from the spec since it is outdated.
+              $.union_dcl,
               $.root_decl,
               $.file_extension_decl,
               $.file_identifier_decl,
@@ -59,16 +61,29 @@ module.exports = grammar({
 
     enum_decl: ($) =>
       seq(
-        choice(
-          seq("enum", $.identifier, ":", $.type),
-          seq("union", $.identifier),
-        ),
+        seq("enum", $.identifier, ":", $.type),
         optional($.metadata),
         "{",
-        // $.identifier,
         $.enumval_decl,
         repeat(seq(",", $.enumval_decl)),
         optional(","),
+        "}",
+      ),
+
+    union_dcl: ($) =>
+      seq(
+        "union",
+        $.identifier,
+        optional($.metadata),
+        "{",
+        choice(
+          seq(
+            $.union_field_decl,
+            repeat(seq(",", $.union_field_decl)),
+            optional(","),
+          ),
+          seq($.full_ident, repeat(seq(",", $.full_ident)), optional(",")),
+        ),
         "}",
       ),
 
@@ -92,10 +107,18 @@ module.exports = grammar({
         $.identifier,
         ":",
         $.type,
-        optional(seq("=", $.scalar)),
+        optional(
+          seq(
+            "=",
+            // To support default value with enum field. Different from spec(only scalar is supported) since it is outdated.
+            $.value,
+          ),
+        ),
         optional($.metadata),
         ";",
       ),
+
+    union_field_decl: ($) => seq($.identifier, ":", $.type),
 
     type: ($) =>
       choice(
@@ -157,12 +180,16 @@ module.exports = grammar({
     full_ident: ($) =>
       seq($.identifier, optional(repeat(seq(".", $.identifier)))),
 
-    scalar: ($) => choice($.int_constant, $.bool_constant, $.float_constant),
+    scalar: ($) => choice($.float_constant, $.int_constant, $.bool_constant),
 
     // boolLit = "true" | "false"
     bool_constant: ($) => choice($.true, $.false),
-    int_constant: ($) => seq(optional(choice("-", "+")), $.int_lit),
-    float_constant: ($) => seq(optional(choice("-", "+")), $.float_lit),
+    int_constant: ($) => seq(optional($.plus_minus_constant), $.int_lit),
+    float_constant: ($) => seq(optional($.plus_minus_constant), $.float_lit),
+
+    plus_minus_constant: $ => choice($.plus_token, $.minus_token),
+    plus_token: $ => token("+"),
+    minus_token: $=> token("-"),
 
     true: ($) => "true",
     false: ($) => "false",
@@ -193,16 +220,21 @@ module.exports = grammar({
         decimals,
       );
 
-      return token(
-        choice(
-          seq(decimals, ".", optional(decimals), optional(exponent)),
-          seq(decimals, exponent),
-          seq(".", decimals, optional(exponent)),
-          "inf",
-          "nan",
+      return choice(
+        choice($.inf_token, $.nan_token),
+        token(
+          choice(
+            seq(decimals, ".", optional(decimals), optional(exponent)),
+            seq(decimals, exponent),
+            seq(".", decimals, optional(exponent)),
+          ),
         ),
       );
     },
+
+    inf_token: ($) => choice(token("infinity"), token("inf")),
+
+    nan_token: ($) => token("nan"),
 
     string_constant: ($) =>
       seq(
