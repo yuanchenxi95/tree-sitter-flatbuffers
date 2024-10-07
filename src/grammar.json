@@ -6,8 +6,11 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "include"
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "include"
+          }
         },
         {
           "type": "CHOICE",

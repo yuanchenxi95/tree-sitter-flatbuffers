@@ -20,7 +20,7 @@ module.exports = grammar({
     //  file_identifier_decl | attribute_decl | rpc_decl | object )*
     source_file: ($) =>
       seq(
-        $.include,
+        repeat($.include),
         optional(
           repeat(
             choice(
