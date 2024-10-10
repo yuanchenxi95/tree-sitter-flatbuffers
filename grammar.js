@@ -42,17 +42,26 @@ module.exports = grammar({
       ),
 
     documentation: ($) => token(seq("///", /.*/)),
-    include: ($) => seq("include", $.string_constant, ";"),
+    include: ($) =>
+      seq("include", field("include_filename", $.string_constant), ";"),
 
-    namespace_decl: ($) => seq("namespace", $.full_ident, ";"),
+    namespace_decl: ($) =>
+      seq("namespace", field("namespace_ident", $.full_ident), ";"),
 
     attribute_decl: ($) =>
-      seq("attribute", choice($.identifier, seq('"', $.identifier, '"')), ";"),
+      seq(
+        "attribute",
+        choice(
+          field("attribute_name", $.identifier),
+          seq('"', field("attribute_name", $.identifier), '"'),
+        ),
+        ";",
+      ),
 
     type_decl: ($) =>
       seq(
         choice("table", "struct"),
-        $.identifier,
+        field("table_or_struct_name", $.identifier),
         optional($.metadata),
         "{",
         repeat($.field_decl),
@@ -61,7 +70,7 @@ module.exports = grammar({
 
     enum_decl: ($) =>
       seq(
-        seq("enum", $.identifier, ":", $.type),
+        seq("enum", field("enum_name", $.identifier), ":", $.type),
         optional($.metadata),
         "{",
         $.enumval_decl,
@@ -73,38 +82,65 @@ module.exports = grammar({
     union_dcl: ($) =>
       seq(
         "union",
-        $.identifier,
+        field("union_name", $.identifier),
         optional($.metadata),
         "{",
         choice(
-          seq(
-            $.union_field_decl,
-            repeat(seq(",", $.union_field_decl)),
-            optional(","),
+          field(
+            "field_with_type",
+            seq(
+              $.union_field_decl,
+              repeat(seq(",", $.union_field_decl)),
+              optional(","),
+            ),
           ),
-          seq($.full_ident, repeat(seq(",", $.full_ident)), optional(",")),
+          field(
+            "field_without_type",
+            seq($.full_ident, repeat(seq(",", $.full_ident)), optional(",")),
+          ),
         ),
         "}",
       ),
 
-    object: ($) => seq("{", comma_separate($.identifier, ":", $.value), "}"),
+    object: ($) =>
+      seq(
+        "{",
+        comma_separate(field("object_key", $.identifier), ":", $.value),
+        "}",
+      ),
 
-    root_decl: ($) => seq("root_type", $.identifier, ";"),
+    root_decl: ($) =>
+      seq("root_type", field("root_type_ident", $.identifier), ";"),
 
-    file_extension_decl: ($) => seq("file_extension", $.string_constant, ";"),
+    file_extension_decl: ($) =>
+      seq(
+        "file_extension",
+        field("file_extension_constant", $.string_constant),
+        ";",
+      ),
 
-    file_identifier_decl: ($) => seq("file_identifier", $.string_constant, ";"),
+    file_identifier_decl: ($) =>
+      seq(
+        "file_identifier",
+        field("file_identifier_constant", $.string_constant),
+        ";",
+      ),
 
     single_value: ($) => choice($.scalar, $.string_constant),
 
     value: ($) =>
-      choice($.single_value, $.object, seq("[", comma_separate($.value), "]")),
+      choice(
+        $.single_value,
+        $.object,
+        field("array_value", seq("[", comma_separate($.value), "]")),
+      ),
 
-    enumval_decl: ($) => seq($.identifier, optional(seq("=", $.int_constant))),
+    enumval_decl: ($) =>
+      seq(field("enum_key", $.identifier), optional(seq("=", $.int_constant))),
 
     field_decl: ($) =>
       seq(
-        $.identifier,
+        field("field_key", $.identifier),
         ":",
         $.type,
         optional(
@@ -118,7 +154,8 @@ module.exports = grammar({
         ";",
       ),
 
-    union_field_decl: ($) => seq($.identifier, ":", $.type),
+    union_field_decl: ($) =>
+      seq(field("union_field_key", $.identifier), ":", $.type),
 
     type: ($) =>
       choice(
@@ -145,21 +182,27 @@ module.exports = grammar({
         "float64",
         "string",
         $.full_ident,
-        seq("[", $.type, "]"),
+        field("array_type", seq("[", $.type, "]")),
       ),
 
     // TODO add support for PRC.
     rpc_decl: ($) =>
-      seq("rpc_service", $.identifier, "{", repeat($.rpc_method), "}"),
+      seq(
+        "rpc_service",
+        field("rpc_name", $.identifier),
+        "{",
+        repeat($.rpc_method),
+        "}",
+      ),
 
     rpc_method: ($) =>
       seq(
-        $.identifier,
+        field("rpc_method_name", $.identifier),
         "(",
-        $.identifier,
+        field("rpc_parameter", $.identifier),
         ")",
         ":",
-        $.identifier,
+        field("rpc_return_type", $.identifier),
         optional($.metadata),
         ";",
       ),
@@ -167,7 +210,7 @@ module.exports = grammar({
     metadata: ($) => seq("(", comma_separate($.field_and_value), ")"),
 
     field_and_value: ($) =>
-      seq($.identifier, optional(seq(":", $.single_value))),
+      seq(field("field_key", $.identifier), optional(seq(":", $.single_value))),
 
     // single_value = fullIdent | ( [ "-" | "+" ] intLit ) | ( [ "-" | "+" ] floatLit ) | strLit | boolLit
     single_value: ($) => choice($.scalar, $.string_constant, $.full_ident),
@@ -187,9 +230,9 @@ module.exports = grammar({
     int_constant: ($) => seq(optional($.plus_minus_constant), $.int_lit),
     float_constant: ($) => seq(optional($.plus_minus_constant), $.float_lit),
 
-    plus_minus_constant: $ => choice($.plus_token, $.minus_token),
-    plus_token: $ => token("+"),
-    minus_token: $=> token("-"),
+    plus_minus_constant: ($) => choice($.plus_token, $.minus_token),
+    plus_token: ($) => token("+"),
+    minus_token: ($) => token("-"),
 
     true: ($) => "true",
     false: ($) => "false",
