@@ -3,9 +3,10 @@
     {
       "name": "flatbuffers",
       "camelcase": "FlatBuffers",
+      "highlights": "queries/highlights.scm",
       "scope": "source.fbs",
       "path": ".",
-      "file-types": [".fbs"],
+      "file-types": ["fbs"],
       "injection-regex": "^flatbuffers$"
     }
   ],
