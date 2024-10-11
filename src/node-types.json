@@ -556,7 +556,7 @@
           "named": true
         },
         {
-          "type": "union_dcl",
+          "type": "union_decl",
           "named": true
         }
       ]
@@ -642,7 +642,7 @@
     }
   },
   {
-    "type": "union_dcl",
+    "type": "union_decl",
     "named": true,
     "fields": {
       "field_with_type": {

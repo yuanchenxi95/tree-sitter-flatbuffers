@@ -29,7 +29,7 @@ module.exports = grammar({
               $.type_decl,
               $.enum_decl,
               // Different from the spec since it is outdated.
-              $.union_dcl,
+              $.union_decl,
               $.root_decl,
               $.file_extension_decl,
               $.file_identifier_decl,
@@ -79,7 +79,7 @@ module.exports = grammar({
         "}",
       ),
 
-    union_dcl: ($) =>
+    union_decl: ($) =>
       seq(
         "union",
         field("union_name", $.identifier),
@@ -185,7 +185,6 @@ module.exports = grammar({
         field("array_type", seq("[", $.type, "]")),
       ),
 
-    // TODO add support for PRC.
     rpc_decl: ($) =>
       seq(
         "rpc_service",

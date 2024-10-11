@@ -7,8 +7,11 @@ include "include_test1.fbs";
 
 namespace MyGame;
 // <- keyword
+//        ^ module
 
 table InParentNamespace {}
+// <- keyword
+//    ^ type
 
 namespace MyGame.Example2;
 
@@ -17,10 +20,16 @@ table Monster {}  // Test having same name as below, but in different namespace.
 namespace MyGame.Example;
 
 attribute "priority";
+// <- keyword
 
 /// Composite components of Monster color.
 enum Color:ubyte (bit_flags) {
+// <- keyword
+//   ^type
+//         ^type.builtin
   Red = 0, // color Red = (1u << 0)
+  // <- type
+  //    ^ number
   /// \brief color Green
   /// Green is bit_flag with value (1u << 1)
   Green,
@@ -44,6 +53,8 @@ enum LongEnum:ulong (bit_flags) {
 }
 
 union Any { Monster, TestSimpleTableWithEnum, MyGame.Example2.Monster }
+// <- keyword
+//    ^ type
 
 union AnyUniqueAliases { M: Monster, TS: TestSimpleTableWithEnum, M2: MyGame.Example2.Monster }
 union AnyAmbiguousAliases { M1: Monster, M2: Monster, M3: Monster }

@@ -275,7 +275,7 @@ file_extension "mon";
       (int_constant
         (int_lit
           (decimal_lit)))))
-  (union_dcl
+  (union_decl
     (identifier)
     (full_ident
       (identifier))
@@ -285,7 +285,7 @@ file_extension "mon";
       (identifier)
       (identifier)
       (identifier)))
-  (union_dcl
+  (union_decl
     (identifier)
     (union_field_decl
       (identifier)
@@ -304,7 +304,7 @@ file_extension "mon";
           (identifier)
           (identifier)
           (identifier)))))
-  (union_dcl
+  (union_decl
     (identifier)
     (union_field_decl
       (identifier)

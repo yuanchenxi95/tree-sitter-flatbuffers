@@ -38,7 +38,7 @@
                   },
                   {
                     "type": "SYMBOL",
-                    "name": "union_dcl"
+                    "name": "union_decl"
                   },
                   {
                     "type": "SYMBOL",
@@ -314,7 +314,7 @@
         }
       ]
     },
-    "union_dcl": {
+    "union_decl": {
       "type": "SEQ",
       "members": [
         {
