@@ -43,6 +43,16 @@
     "type": "enum_decl",
     "named": true,
     "fields": {
+      "documentation": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "documentation",
+            "named": true
+          }
+        ]
+      },
       "enum_name": {
         "multiple": false,
         "required": true,
@@ -52,24 +62,32 @@
             "named": true
           }
         ]
+      },
+      "enum_val_decl": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "enum_val_decl",
+            "named": true
+          }
+        ]
+      },
+      "metadata": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "metadata",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "documentation",
-          "named": true
-        },
-        {
-          "type": "enumval_decl",
-          "named": true
-        },
-        {
-          "type": "metadata",
-          "named": true
-        },
         {
           "type": "type",
           "named": true
@@ -78,9 +96,29 @@
     }
   },
   {
-    "type": "enumval_decl",
+    "type": "enum_val_decl",
     "named": true,
     "fields": {
+      "documentation": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "documentation",
+            "named": true
+          }
+        ]
+      },
+      "enum_int_constant": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "int_constant",
+            "named": true
+          }
+        ]
+      },
       "enum_key": {
         "multiple": false,
         "required": true,
@@ -91,20 +129,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "documentation",
-          "named": true
-        },
-        {
-          "type": "int_constant",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -120,23 +144,33 @@
             "named": true
           }
         ]
+      },
+      "field_value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "single_value",
+            "named": true
+          }
+        ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "single_value",
-          "named": true
-        }
-      ]
     }
   },
   {
     "type": "field_decl",
     "named": true,
     "fields": {
+      "documentation": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "documentation",
+            "named": true
+          }
+        ]
+      },
       "field_key": {
         "multiple": false,
         "required": true,
@@ -146,29 +180,37 @@
             "named": true
           }
         ]
+      },
+      "field_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      },
+      "field_value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "value",
+            "named": true
+          }
+        ]
+      },
+      "metadata": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "metadata",
+            "named": true
+          }
+        ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "documentation",
-          "named": true
-        },
-        {
-          "type": "metadata",
-          "named": true
-        },
-        {
-          "type": "type",
-          "named": true
-        },
-        {
-          "type": "value",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -260,7 +302,7 @@
     "type": "include",
     "named": true,
     "fields": {
-      "include_filename": {
+      "include_name": {
         "multiple": false,
         "required": true,
         "types": [
@@ -318,16 +360,17 @@
   {
     "type": "metadata",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "field_and_value",
-          "named": true
-        }
-      ]
+    "fields": {
+      "field_and_value": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "field_and_value",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -349,16 +392,17 @@
   {
     "type": "object",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "documentation",
-          "named": true
-        }
-      ]
+    "fields": {
+      "documentation": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "documentation",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -400,6 +444,26 @@
     "type": "rpc_decl",
     "named": true,
     "fields": {
+      "documentation": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "documentation",
+            "named": true
+          }
+        ]
+      },
+      "rpc_method": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "rpc_method",
+            "named": true
+          }
+        ]
+      },
       "rpc_name": {
         "multiple": false,
         "required": true,
@@ -410,26 +474,32 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "documentation",
-          "named": true
-        },
-        {
-          "type": "rpc_method",
-          "named": true
-        }
-      ]
     }
   },
   {
     "type": "rpc_method",
     "named": true,
     "fields": {
+      "documentation": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "documentation",
+            "named": true
+          }
+        ]
+      },
+      "metadata": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "metadata",
+            "named": true
+          }
+        ]
+      },
       "rpc_method_name": {
         "multiple": false,
         "required": true,
@@ -460,20 +530,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "documentation",
-          "named": true
-        },
-        {
-          "type": "metadata",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -502,24 +558,37 @@
   {
     "type": "single_value",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "full_ident",
-          "named": true
-        },
-        {
-          "type": "scalar",
-          "named": true
-        },
-        {
-          "type": "string_constant",
-          "named": true
-        }
-      ]
+    "fields": {
+      "full_ident": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "full_ident",
+            "named": true
+          }
+        ]
+      },
+      "scalar_value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "scalar",
+            "named": true
+          }
+        ]
+      },
+      "string_constant": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "string_constant",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -614,23 +683,43 @@
             "named": true
           }
         ]
+      },
+      "full_ident": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "full_ident",
+            "named": true
+          }
+        ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "full_ident",
-          "named": true
-        }
-      ]
     }
   },
   {
     "type": "type_decl",
     "named": true,
     "fields": {
+      "documentation": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "documentation",
+            "named": true
+          }
+        ]
+      },
+      "metadata": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "metadata",
+            "named": true
+          }
+        ]
+      },
       "table_or_struct_name": {
         "multiple": false,
         "required": true,
@@ -647,15 +736,7 @@
       "required": false,
       "types": [
         {
-          "type": "documentation",
-          "named": true
-        },
-        {
           "type": "field_decl",
-          "named": true
-        },
-        {
-          "type": "metadata",
           "named": true
         }
       ]
@@ -665,16 +746,12 @@
     "type": "union_decl",
     "named": true,
     "fields": {
-      "field_with_type": {
+      "documentation": {
         "multiple": true,
         "required": false,
         "types": [
           {
-            "type": ",",
-            "named": false
-          },
-          {
-            "type": "union_field_decl",
+            "type": "documentation",
             "named": true
           }
         ]
@@ -693,6 +770,26 @@
           }
         ]
       },
+      "metadata": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "metadata",
+            "named": true
+          }
+        ]
+      },
+      "union_field_decl": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "union_field_decl",
+            "named": true
+          }
+        ]
+      },
       "union_name": {
         "multiple": false,
         "required": true,
@@ -703,26 +800,22 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "documentation",
-          "named": true
-        },
-        {
-          "type": "metadata",
-          "named": true
-        }
-      ]
     }
   },
   {
     "type": "union_field_decl",
     "named": true,
     "fields": {
+      "documentation": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "documentation",
+            "named": true
+          }
+        ]
+      },
       "union_field_key": {
         "multiple": false,
         "required": true,
@@ -732,21 +825,17 @@
             "named": true
           }
         ]
+      },
+      "union_field_value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "documentation",
-          "named": true
-        },
-        {
-          "type": "type",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -774,21 +863,37 @@
             "named": true
           }
         ]
+      },
+      "array_value_item": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "value",
+            "named": true
+          }
+        ]
+      },
+      "object_value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "object",
+            "named": true
+          }
+        ]
+      },
+      "single_value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "single_value",
+            "named": true
+          }
+        ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "object",
-          "named": true
-        },
-        {
-          "type": "single_value",
-          "named": true
-        }
-      ]
     }
   },
   {

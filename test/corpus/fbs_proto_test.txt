@@ -103,17 +103,17 @@ table OtherMessageMapEntry {
     (documentation)
     (identifier)
     (type)
-    (enumval_decl
+    (enum_val_decl
       (identifier)
       (int_constant
         (int_lit
           (decimal_lit))))
-    (enumval_decl
+    (enum_val_decl
       (identifier)
       (int_constant
         (int_lit
           (decimal_lit))))
-    (enumval_decl
+    (enum_val_decl
       (documentation)
       (identifier)
       (int_constant
@@ -128,22 +128,22 @@ table OtherMessageMapEntry {
   (enum_decl
     (identifier)
     (type)
-    (enumval_decl
+    (enum_val_decl
       (identifier)
       (int_constant
         (int_lit
           (decimal_lit))))
-    (enumval_decl
+    (enum_val_decl
       (identifier)
       (int_constant
         (int_lit
           (decimal_lit))))
-    (enumval_decl
+    (enum_val_decl
       (identifier)
       (int_constant
         (int_lit
           (decimal_lit))))
-    (enumval_decl
+    (enum_val_decl
       (identifier)
       (int_constant
         (int_lit

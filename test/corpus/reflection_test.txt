@@ -176,47 +176,47 @@ file_extension "bfbs";
   (enum_decl
     (identifier)
     (type)
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
-      (identifier))
-    (comment)
-    (enumval_decl
-      (identifier))
-    (enumval_decl
-      (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
     (comment)
-    (enumval_decl
+    (enum_val_decl
+      (identifier))
+    (enum_val_decl
+      (identifier))
+    (enum_val_decl
+      (identifier))
+    (comment)
+    (enum_val_decl
       (identifier)))
   (type_decl
     (identifier)
@@ -610,13 +610,13 @@ file_extension "bfbs";
     (metadata
       (field_and_value
         (identifier)))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier)))
   (type_decl
     (documentation)

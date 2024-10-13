@@ -10,6 +10,46 @@ function comma_separate(x) {
   return seq(x, repeat(seq(",", x)));
 }
 
+const FIELD_KEY = {
+  array_type: "array_type",
+  array_value: "array_value",
+  array_value_item: "array_value_item",
+  attribute_name: "attribute_name",
+  documentation: "documentation",
+  enum_int_constant: "enum_int_constant",
+  enum_key: "enum_key",
+  enum_name: "enum_name",
+  enum_val_decl: "enum_val_decl",
+  field_and_value: "field_and_value",
+  field_key: "field_key",
+  field_type: "field_type",
+  field_value: "field_value",
+  field_with_type: "field_with_type",
+  field_without_type: "field_without_type",
+  file_extension_constant: "file_extension_constant",
+  file_identifier_constant: "file_identifier_constant",
+  full_ident: "full_ident",
+  include_name: "include_name",
+  metadata: "metadata",
+  namespace_ident: "namespace_ident",
+  object_key: "object_key",
+  object_value: "object_value",
+  root_type_ident: "root_type_ident",
+  rpc_method: "rpc_method",
+  rpc_method_name: "rpc_method_name",
+  rpc_name: "rpc_name",
+  rpc_parameter: "rpc_parameter",
+  rpc_return_type: "rpc_return_type",
+  scalar_value: "scalar_value",
+  single_value: "single_value",
+  string_constant: "string_constant",
+  table_or_struct_name: "table_or_struct_name",
+  union_field_decl: "union_field_decl",
+  union_field_key: "union_field_key",
+  union_field_value: "union_field_value",
+  union_name: "union_name",
+};
+
 module.exports = grammar({
   name: "flatbuffers",
 
@@ -42,27 +82,27 @@ module.exports = grammar({
 
     documentation: ($) => token(seq("///", /.*/)),
     include: ($) =>
-      seq("include", field("include_filename", $.string_constant), ";"),
+      seq("include", field(FIELD_KEY.include_name, $.string_constant), ";"),
 
     namespace_decl: ($) =>
-      seq("namespace", field("namespace_ident", $.full_ident), ";"),
+      seq("namespace", field(FIELD_KEY.namespace_ident, $.full_ident), ";"),
 
     attribute_decl: ($) =>
       seq(
         "attribute",
         choice(
-          field("attribute_name", $.identifier),
-          seq('"', field("attribute_name", $.identifier), '"'),
+          field(FIELD_KEY.attribute_name, $.identifier),
+          seq('"', field(FIELD_KEY.attribute_name, $.identifier), '"'),
         ),
         ";",
       ),
 
     type_decl: ($) =>
       seq(
-        repeat($.documentation),
+        repeat(field(FIELD_KEY.documentation, $.documentation)),
         choice("table", "struct"),
-        field("table_or_struct_name", $.identifier),
-        optional($.metadata),
+        field(FIELD_KEY.table_or_struct_name, $.identifier),
+        optional(field(FIELD_KEY.metadata, $.metadata)),
         "{",
         repeat($.field_decl),
         "}",
@@ -70,34 +110,32 @@ module.exports = grammar({
 
     enum_decl: ($) =>
       seq(
-        repeat($.documentation),
-        seq("enum", field("enum_name", $.identifier), ":", $.type),
-        optional($.metadata),
+        repeat(field(FIELD_KEY.documentation, $.documentation)),
+        seq("enum", field(FIELD_KEY.enum_name, $.identifier), ":", $.type),
+        optional(field(FIELD_KEY.metadata, $.metadata)),
         "{",
-        $.enumval_decl,
-        repeat(seq(",", $.enumval_decl)),
+        comma_separate(field(FIELD_KEY.enum_val_decl, $.enum_val_decl)),
         optional(","),
         "}",
       ),
 
     union_decl: ($) =>
       seq(
-        repeat($.documentation),
+        repeat(field(FIELD_KEY.documentation, $.documentation)),
         "union",
-        field("union_name", $.identifier),
-        optional($.metadata),
+        field(FIELD_KEY.union_name, $.identifier),
+        optional(field(FIELD_KEY.metadata, $.metadata)),
         "{",
         choice(
-          field(
-            "field_with_type",
-            seq(
-              $.union_field_decl,
-              repeat(seq(",", $.union_field_decl)),
-              optional(","),
+          seq(
+            field(FIELD_KEY.union_field_decl, $.union_field_decl),
+            repeat(
+              seq(",", field(FIELD_KEY.union_field_decl, $.union_field_decl)),
             ),
+            optional(","),
           ),
           field(
-            "field_without_type",
+            FIELD_KEY.field_without_type,
             seq($.full_ident, repeat(seq(",", $.full_ident)), optional(",")),
           ),
         ),
@@ -108,70 +146,75 @@ module.exports = grammar({
       seq(
         "{",
         comma_separate(
-          repeat($.documentation),
-          field("object_key", $.identifier),
+          repeat(field(FIELD_KEY.documentation, $.documentation)),
+          field(FIELD_KEY.object_key, $.identifier),
           ":",
-          $.value,
+          field(FIELD_KEY.object_value, $.value),
         ),
         "}",
       ),
 
     root_decl: ($) =>
-      seq("root_type", field("root_type_ident", $.identifier), ";"),
+      seq("root_type", field(FIELD_KEY.root_type_ident, $.identifier), ";"),
 
     file_extension_decl: ($) =>
       seq(
         "file_extension",
-        field("file_extension_constant", $.string_constant),
+        field(FIELD_KEY.file_extension_constant, $.string_constant),
         ";",
       ),
 
     file_identifier_decl: ($) =>
       seq(
         "file_identifier",
-        field("file_identifier_constant", $.string_constant),
+        field(FIELD_KEY.file_identifier_constant, $.string_constant),
         ";",
       ),
 
-    single_value: ($) => choice($.scalar, $.string_constant),
-
     value: ($) =>
       choice(
-        $.single_value,
-        $.object,
-        field("array_value", seq("[", comma_separate($.value), "]")),
+        field(FIELD_KEY.single_value, $.single_value),
+        field(FIELD_KEY.object_value, $.object),
+        field(
+          FIELD_KEY.array_value,
+          seq(
+            "[",
+            comma_separate(field(FIELD_KEY.array_value_item, $.value)),
+            "]",
+          ),
+        ),
       ),
 
-    enumval_decl: ($) =>
+    enum_val_decl: ($) =>
       seq(
-        repeat($.documentation),
-        field("enum_key", $.identifier),
-        optional(seq("=", $.int_constant)),
+        repeat(field(FIELD_KEY.documentation, $.documentation)),
+        field(FIELD_KEY.enum_key, $.identifier),
+        optional(seq("=", field(FIELD_KEY.enum_int_constant, $.int_constant))),
       ),
 
     field_decl: ($) =>
       seq(
-        repeat($.documentation),
-        field("field_key", $.identifier),
+        repeat(field(FIELD_KEY.documentation, $.documentation)),
+        field(FIELD_KEY.field_key, $.identifier),
         ":",
-        $.type,
+        field(FIELD_KEY.field_type, $.type),
         optional(
           seq(
             "=",
             // To support default value with enum field. Different from spec(only scalar is supported) since it is outdated.
-            $.value,
+            field(FIELD_KEY.field_value, $.value),
           ),
         ),
-        optional($.metadata),
+        optional(field(FIELD_KEY.metadata, $.metadata)),
         ";",
       ),
 
     union_field_decl: ($) =>
       seq(
-        repeat($.documentation),
-        field("union_field_key", $.identifier),
+        repeat(field(FIELD_KEY.documentation, $.documentation)),
+        field(FIELD_KEY.union_field_key, $.identifier),
         ":",
-        $.type,
+        field(FIELD_KEY.union_field_value, $.type),
       ),
 
     type: ($) =>
@@ -198,40 +241,53 @@ module.exports = grammar({
         "float32",
         "float64",
         "string",
-        $.full_ident,
-        field("array_type", seq("[", $.type, "]")),
+        field(FIELD_KEY.full_ident, $.full_ident),
+        field(FIELD_KEY.array_type, seq("[", $.type, "]")),
       ),
 
     rpc_decl: ($) =>
       seq(
-        repeat($.documentation),
+        repeat(field(FIELD_KEY.documentation, $.documentation)),
         "rpc_service",
-        field("rpc_name", $.identifier),
+        field(FIELD_KEY.rpc_name, $.identifier),
         "{",
-        repeat($.rpc_method),
+        field(FIELD_KEY.rpc_method, repeat($.rpc_method)),
         "}",
       ),
 
     rpc_method: ($) =>
       seq(
-        repeat($.documentation),
-        field("rpc_method_name", $.identifier),
+        repeat(field(FIELD_KEY.documentation, $.documentation)),
+        field(FIELD_KEY.rpc_method_name, $.identifier),
         "(",
-        field("rpc_parameter", $.identifier),
+        field(FIELD_KEY.rpc_parameter, $.identifier),
         ")",
         ":",
-        field("rpc_return_type", $.identifier),
-        optional($.metadata),
+        field(FIELD_KEY.rpc_return_type, $.identifier),
+        optional(field(FIELD_KEY.metadata, $.metadata)),
         ";",
       ),
 
-    metadata: ($) => seq("(", comma_separate($.field_and_value), ")"),
+    metadata: ($) =>
+      seq(
+        "(",
+        comma_separate(field(FIELD_KEY.field_and_value, $.field_and_value)),
+        ")",
+      ),
 
     field_and_value: ($) =>
-      seq(field("field_key", $.identifier), optional(seq(":", $.single_value))),
+      seq(
+        field(FIELD_KEY.field_key, $.identifier),
+        optional(seq(":", field(FIELD_KEY.field_value, $.single_value))),
+      ),
 
     // single_value = fullIdent | ( [ "-" | "+" ] intLit ) | ( [ "-" | "+" ] floatLit ) | strLit | boolLit
-    single_value: ($) => choice($.scalar, $.string_constant, $.full_ident),
+    single_value: ($) =>
+      choice(
+        field(FIELD_KEY.scalar_value, $.scalar),
+        field(FIELD_KEY.string_constant, $.string_constant),
+        field(FIELD_KEY.full_ident, $.full_ident),
+      ),
 
     // ident = letter { letter | decimalDigit | "_" }
     identifier: ($) =>

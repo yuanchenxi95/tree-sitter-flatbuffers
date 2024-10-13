@@ -217,17 +217,17 @@ file_extension "mon";
     (metadata
       (field_and_value
         (identifier)))
-    (enumval_decl
+    (enum_val_decl
       (identifier)
       (int_constant
         (int_lit
           (decimal_lit))))
     (comment)
-    (enumval_decl
+    (enum_val_decl
       (documentation)
       (documentation)
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (documentation)
       (identifier)
       (int_constant
@@ -236,21 +236,21 @@ file_extension "mon";
   (enum_decl
     (identifier)
     (type)
-    (enumval_decl
+    (enum_val_decl
       (identifier)
       (int_constant
         (plus_minus_constant
           (minus_token))
         (int_lit
           (decimal_lit))))
-    (enumval_decl
+    (enum_val_decl
       (identifier)
       (int_constant
         (int_lit
           (decimal_lit))))
-    (enumval_decl
+    (enum_val_decl
       (identifier))
-    (enumval_decl
+    (enum_val_decl
       (identifier)))
   (enum_decl
     (identifier)
@@ -258,19 +258,19 @@ file_extension "mon";
     (metadata
       (field_and_value
         (identifier)))
-    (enumval_decl
+    (enum_val_decl
       (identifier)
       (int_constant
         (int_lit
           (decimal_lit))))
-    (enumval_decl
+    (enum_val_decl
       (identifier)
       (int_constant
         (int_lit
           (decimal_lit))))
     (comment)
     (comment)
-    (enumval_decl
+    (enum_val_decl
       (identifier)
       (int_constant
         (int_lit
