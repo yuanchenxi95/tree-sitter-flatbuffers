@@ -99,22 +99,22 @@ table OtherMessageMapEntry {
     (full_ident
       (identifier)
       (identifier)))
-  (documentation)
   (enum_decl
+    (documentation)
     (identifier)
     (type)
     (enumval_decl
       (identifier)
       (int_constant
         (int_lit
-          (octal_lit))))
+          (decimal_lit))))
     (enumval_decl
       (identifier)
       (int_constant
         (int_lit
           (decimal_lit))))
-    (comment)
     (enumval_decl
+      (documentation)
       (identifier)
       (int_constant
         (int_lit
@@ -132,7 +132,7 @@ table OtherMessageMapEntry {
       (identifier)
       (int_constant
         (int_lit
-          (octal_lit))))
+          (decimal_lit))))
     (enumval_decl
       (identifier)
       (int_constant
@@ -152,9 +152,9 @@ table OtherMessageMapEntry {
     (full_ident
       (identifier)
       (identifier)))
-  (documentation)
-  (documentation)
   (type_decl
+    (documentation)
+    (documentation)
     (identifier)
     (field_decl
       (identifier)
@@ -174,8 +174,8 @@ table OtherMessageMapEntry {
     (field_decl
       (identifier)
       (type))
-    (comment)
     (field_decl
+      (documentation)
       (identifier)
       (type)
       (value
@@ -201,13 +201,13 @@ table OtherMessageMapEntry {
     (field_decl
       (identifier)
       (type))
-    (comment)
     (field_decl
+      (documentation)
       (identifier)
       (type))
-    (comment)
-    (comment)
     (field_decl
+      (documentation)
+      (documentation)
       (identifier)
       (type)
       (metadata
@@ -236,8 +236,8 @@ table OtherMessageMapEntry {
           (identifier)
           (identifier)
           (identifier))))
-    (comment)
     (field_decl
+      (documentation)
       (identifier)
       (type
         (full_ident
@@ -313,8 +313,8 @@ table OtherMessageMapEntry {
     (field_decl
       (identifier)
       (type))
-    (comment)
     (field_decl
+      (documentation)
       (identifier)
       (type)
       (value
@@ -333,17 +333,17 @@ table OtherMessageMapEntry {
           (identifier)))))
   (type_decl
     (identifier)
-    (comment)
     (field_decl
+      (documentation)
       (identifier)
       (type
         (full_ident
           (identifier)
           (identifier)
           (identifier))))
-    (comment)
-    (comment)
     (field_decl
+      (documentation)
+      (documentation)
       (identifier)
       (type
         (full_ident

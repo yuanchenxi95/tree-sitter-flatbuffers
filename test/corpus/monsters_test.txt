@@ -210,8 +210,8 @@ file_extension "mon";
       (identifier)))
   (attribute_decl
     (identifier))
-  (documentation)
   (enum_decl
+    (documentation)
     (identifier)
     (type)
     (metadata
@@ -221,14 +221,14 @@ file_extension "mon";
       (identifier)
       (int_constant
         (int_lit
-          (octal_lit))))
-    (comment)
-    (comment)
+          (decimal_lit))))
     (comment)
     (enumval_decl
+      (documentation)
+      (documentation)
       (identifier))
-    (comment)
     (enumval_decl
+      (documentation)
       (identifier)
       (int_constant
         (int_lit
@@ -247,7 +247,7 @@ file_extension "mon";
       (identifier)
       (int_constant
         (int_lit
-          (octal_lit))))
+          (decimal_lit))))
     (enumval_decl
       (identifier))
     (enumval_decl
@@ -438,8 +438,8 @@ file_extension "mon";
           (identifier)
           (single_value
             (string_constant))))))
-  (documentation)
   (type_decl
+    (documentation)
     (identifier)
     (field_decl
       (identifier)
@@ -453,7 +453,7 @@ file_extension "mon";
             (scalar
               (int_constant
                 (int_lit
-                  (octal_lit))))))))
+                  (decimal_lit))))))))
     (field_decl
       (identifier)
       (type)
@@ -555,9 +555,9 @@ file_extension "mon";
               (int_constant
                 (int_lit
                   (decimal_lit))))))))
-    (comment)
-    (comment)
     (field_decl
+      (documentation)
+      (documentation)
       (identifier)
       (type
         (type

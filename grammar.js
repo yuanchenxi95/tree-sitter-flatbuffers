@@ -24,7 +24,6 @@ module.exports = grammar({
         optional(
           repeat(
             choice(
-              $.documentation,
               $.namespace_decl,
               $.type_decl,
               $.enum_decl,
@@ -60,6 +59,7 @@ module.exports = grammar({
 
     type_decl: ($) =>
       seq(
+        repeat($.documentation),
         choice("table", "struct"),
         field("table_or_struct_name", $.identifier),
         optional($.metadata),
@@ -70,6 +70,7 @@ module.exports = grammar({
 
     enum_decl: ($) =>
       seq(
+        repeat($.documentation),
         seq("enum", field("enum_name", $.identifier), ":", $.type),
         optional($.metadata),
         "{",
@@ -81,6 +82,7 @@ module.exports = grammar({
 
     union_decl: ($) =>
       seq(
+        repeat($.documentation),
         "union",
         field("union_name", $.identifier),
         optional($.metadata),
@@ -105,7 +107,12 @@ module.exports = grammar({
     object: ($) =>
       seq(
         "{",
-        comma_separate(field("object_key", $.identifier), ":", $.value),
+        comma_separate(
+          repeat($.documentation),
+          field("object_key", $.identifier),
+          ":",
+          $.value,
+        ),
         "}",
       ),
 
@@ -136,10 +143,15 @@ module.exports = grammar({
       ),
 
     enumval_decl: ($) =>
-      seq(field("enum_key", $.identifier), optional(seq("=", $.int_constant))),
+      seq(
+        repeat($.documentation),
+        field("enum_key", $.identifier),
+        optional(seq("=", $.int_constant)),
+      ),
 
     field_decl: ($) =>
       seq(
+        repeat($.documentation),
         field("field_key", $.identifier),
         ":",
         $.type,
@@ -155,7 +167,12 @@ module.exports = grammar({
       ),
 
     union_field_decl: ($) =>
-      seq(field("union_field_key", $.identifier), ":", $.type),
+      seq(
+        repeat($.documentation),
+        field("union_field_key", $.identifier),
+        ":",
+        $.type,
+      ),
 
     type: ($) =>
       choice(
@@ -187,6 +204,7 @@ module.exports = grammar({
 
     rpc_decl: ($) =>
       seq(
+        repeat($.documentation),
         "rpc_service",
         field("rpc_name", $.identifier),
         "{",
@@ -196,6 +214,7 @@ module.exports = grammar({
 
     rpc_method: ($) =>
       seq(
+        repeat($.documentation),
         field("rpc_method_name", $.identifier),
         "(",
         field("rpc_parameter", $.identifier),
@@ -236,14 +255,12 @@ module.exports = grammar({
     true: ($) => "true",
     false: ($) => "false",
 
-    // intLit = decimalLit | octalLit | hexLit
-    int_lit: ($) => choice($.decimal_lit, $.octal_lit, $.hex_lit),
+    // intLit = decimalLit | hexLit
+    int_lit: ($) => choice($.decimal_lit, $.hex_lit),
 
     // decimalLit = ( "1" ... "9") { decimalDigit }
-    decimal_lit: ($) => token(seq(/[1-9]/, repeat(decimal_digit))),
-
-    // octalLit = "0" { octalDigit }
-    octal_lit: ($) => token(seq("0", repeat(octal_digit))),
+    decimal_lit: ($) =>
+      choice(token(seq(/[1-9]/, repeat(decimal_digit))), token("0")),
 
     // hexLit = "0" ( "x" | "X" ) hexDigit { hexDigit }
     hex_lit: ($) =>

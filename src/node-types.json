@@ -35,6 +35,11 @@
     }
   },
   {
+    "type": "decimal_lit",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "enum_decl",
     "named": true,
     "fields": {
@@ -53,6 +58,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "documentation",
+          "named": true
+        },
         {
           "type": "enumval_decl",
           "named": true
@@ -84,9 +93,13 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "documentation",
+          "named": true
+        },
         {
           "type": "int_constant",
           "named": true
@@ -139,6 +152,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "documentation",
+          "named": true
+        },
         {
           "type": "metadata",
           "named": true
@@ -294,10 +311,6 @@
         {
           "type": "hex_lit",
           "named": true
-        },
-        {
-          "type": "octal_lit",
-          "named": true
         }
       ]
     }
@@ -336,17 +349,16 @@
   {
     "type": "object",
     "named": true,
-    "fields": {
-      "object_key": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "identifier",
-            "named": true
-          }
-        ]
-      }
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "documentation",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -404,6 +416,10 @@
       "required": false,
       "types": [
         {
+          "type": "documentation",
+          "named": true
+        },
+        {
           "type": "rpc_method",
           "named": true
         }
@@ -446,9 +462,13 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "documentation",
+          "named": true
+        },
         {
           "type": "metadata",
           "named": true
@@ -513,10 +533,6 @@
       "types": [
         {
           "type": "attribute_decl",
-          "named": true
-        },
-        {
-          "type": "documentation",
           "named": true
         },
         {
@@ -631,6 +647,10 @@
       "required": false,
       "types": [
         {
+          "type": "documentation",
+          "named": true
+        },
+        {
           "type": "field_decl",
           "named": true
         },
@@ -685,9 +705,13 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "documentation",
+          "named": true
+        },
         {
           "type": "metadata",
           "named": true
@@ -711,9 +735,13 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "documentation",
+          "named": true
+        },
         {
           "type": "type",
           "named": true
@@ -784,6 +812,10 @@
     "named": false
   },
   {
+    "type": "0",
+    "named": false
+  },
+  {
     "type": ":",
     "named": false
   },
@@ -817,10 +849,6 @@
   },
   {
     "type": "comment",
-    "named": true
-  },
-  {
-    "type": "decimal_lit",
     "named": true
   },
   {
@@ -917,10 +945,6 @@
   },
   {
     "type": "nan_token",
-    "named": true
-  },
-  {
-    "type": "octal_lit",
     "named": true
   },
   {

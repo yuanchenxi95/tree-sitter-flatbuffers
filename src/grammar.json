@@ -22,10 +22,6 @@
                 "members": [
                   {
                     "type": "SYMBOL",
-                    "name": "documentation"
-                  },
-                  {
-                    "type": "SYMBOL",
                     "name": "namespace_decl"
                   },
                   {
@@ -183,6 +179,13 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "documentation"
+          }
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
@@ -235,6 +238,13 @@
     "enum_decl": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "documentation"
+          }
+        },
         {
           "type": "SEQ",
           "members": [
@@ -317,6 +327,13 @@
     "union_decl": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "documentation"
+          }
+        },
         {
           "type": "STRING",
           "value": "union"
@@ -449,11 +466,10 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "FIELD",
-              "name": "object_key",
+              "type": "REPEAT",
               "content": {
                 "type": "SYMBOL",
-                "name": "identifier"
+                "name": "documentation"
               }
             },
             {
@@ -466,11 +482,10 @@
                     "value": ","
                   },
                   {
-                    "type": "FIELD",
-                    "name": "object_key",
+                    "type": "REPEAT",
                     "content": {
                       "type": "SYMBOL",
-                      "name": "identifier"
+                      "name": "documentation"
                     }
                   }
                 ]
@@ -623,6 +638,13 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "documentation"
+          }
+        },
+        {
           "type": "FIELD",
           "name": "enum_key",
           "content": {
@@ -656,6 +678,13 @@
     "field_decl": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "documentation"
+          }
+        },
         {
           "type": "FIELD",
           "name": "field_key",
@@ -714,6 +743,13 @@
     "union_field_decl": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "documentation"
+          }
+        },
         {
           "type": "FIELD",
           "name": "union_field_key",
@@ -854,6 +890,13 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "documentation"
+          }
+        },
+        {
           "type": "STRING",
           "value": "rpc_service"
         },
@@ -885,6 +928,13 @@
     "rpc_method": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "documentation"
+          }
+        },
         {
           "type": "FIELD",
           "name": "rpc_method_name",
@@ -1200,51 +1250,40 @@
         },
         {
           "type": "SYMBOL",
-          "name": "octal_lit"
-        },
-        {
-          "type": "SYMBOL",
           "name": "hex_lit"
         }
       ]
     },
     "decimal_lit": {
-      "type": "TOKEN",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "PATTERN",
-            "value": "[1-9]"
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "PATTERN",
-              "value": "[0-9]"
-            }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[1-9]"
+              },
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[0-9]"
+                }
+              }
+            ]
           }
-        ]
-      }
-    },
-    "octal_lit": {
-      "type": "TOKEN",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
+        },
+        {
+          "type": "TOKEN",
+          "content": {
             "type": "STRING",
             "value": "0"
-          },
-          {
-            "type": "REPEAT",
-            "content": {
-              "type": "PATTERN",
-              "value": "[0-7]"
-            }
           }
-        ]
-      }
+        }
+      ]
     },
     "hex_lit": {
       "type": "TOKEN",

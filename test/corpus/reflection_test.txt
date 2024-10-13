@@ -259,10 +259,10 @@ file_extension "bfbs";
           (scalar
             (int_constant
               (int_lit
-                (octal_lit)))))))
-    (comment)
+                (decimal_lit)))))))
     (comment)
     (field_decl
+      (documentation)
       (identifier)
       (type)
       (value
@@ -272,8 +272,8 @@ file_extension "bfbs";
               (int_lit
                 (decimal_lit)))))))
     (comment)
-    (comment)
     (field_decl
+      (documentation)
       (identifier)
       (type)
       (value
@@ -281,7 +281,7 @@ file_extension "bfbs";
           (scalar
             (int_constant
               (int_lit
-                (octal_lit))))))))
+                (decimal_lit))))))))
   (type_decl
     (identifier)
     (field_decl
@@ -378,8 +378,8 @@ file_extension "bfbs";
       (identifier)
       (type
         (type)))
-    (comment)
     (field_decl
+      (documentation)
       (identifier)
       (type)))
   (type_decl
@@ -415,7 +415,7 @@ file_extension "bfbs";
           (scalar
             (int_constant
               (int_lit
-                (octal_lit)))))))
+                (decimal_lit)))))))
     (field_decl
       (identifier)
       (type)
@@ -466,8 +466,8 @@ file_extension "bfbs";
           (scalar
             (bool_constant
               (false))))))
-    (comment)
     (field_decl
+      (documentation)
       (identifier)
       (type)
       (value
@@ -475,9 +475,9 @@ file_extension "bfbs";
           (scalar
             (int_constant
               (int_lit
-                (octal_lit)))))))
-    (comment)
+                (decimal_lit)))))))
     (field_decl
+      (documentation)
       (identifier)
       (type)
       (value
@@ -531,8 +531,8 @@ file_extension "bfbs";
       (identifier)
       (type
         (type)))
-    (comment)
     (field_decl
+      (documentation)
       (identifier)
       (type)))
   (type_decl
@@ -599,12 +599,12 @@ file_extension "bfbs";
       (identifier)
       (type
         (type)))
-    (comment)
     (field_decl
+      (documentation)
       (identifier)
       (type)))
-  (documentation)
   (enum_decl
+    (documentation)
     (identifier)
     (type)
     (metadata
@@ -618,13 +618,13 @@ file_extension "bfbs";
       (identifier))
     (enumval_decl
       (identifier)))
-  (documentation)
-  (documentation)
-  (documentation)
   (type_decl
+    (documentation)
+    (documentation)
+    (documentation)
     (identifier)
-    (comment)
     (field_decl
+      (documentation)
       (identifier)
       (type)
       (metadata
@@ -632,8 +632,8 @@ file_extension "bfbs";
           (identifier))
         (field_and_value
           (identifier))))
-    (comment)
     (field_decl
+      (documentation)
       (identifier)
       (type
         (type))))
@@ -682,9 +682,9 @@ file_extension "bfbs";
       (type
         (full_ident
           (identifier))))
-    (comment)
-    (comment)
     (field_decl
+      (documentation)
+      (documentation)
       (identifier)
       (type
         (type
