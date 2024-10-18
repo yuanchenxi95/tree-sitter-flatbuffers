@@ -667,19 +667,21 @@
     "named": true,
     "fields": {
       "array_type": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "[",
-            "named": false
-          },
-          {
-            "type": "]",
-            "named": false
-          },
-          {
             "type": "type",
+            "named": true
+          }
+        ]
+      },
+      "array_type_fixed_length": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "int_lit",
             "named": true
           }
         ]

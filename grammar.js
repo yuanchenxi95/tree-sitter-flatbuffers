@@ -12,6 +12,7 @@ function comma_separate(x) {
 
 const FIELD_KEY = {
   array_type: "array_type",
+  array_type_fixed_length: "array_type_fixed_length",
   array_value: "array_value",
   array_value_item: "array_value_item",
   attribute_name: "attribute_name",
@@ -248,7 +249,14 @@ module.exports = grammar({
         "float64",
         "string",
         field(FIELD_KEY.full_ident, $.full_ident),
-        field(FIELD_KEY.array_type, seq("[", $.type, "]")),
+        seq(
+          "[",
+          field(FIELD_KEY.array_type, $.type),
+          optional(
+            seq(":", field(FIELD_KEY.array_type_fixed_length, $.int_lit)),
+          ),
+          "]",
+        ),
       ),
 
     rpc_decl: ($) =>

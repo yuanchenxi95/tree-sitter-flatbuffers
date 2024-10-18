@@ -1,0 +1,120 @@
+==================
+FBS Array test
+==================
+
+// Source: https://github.com/google/flatbuffers/blob/807adb73b20f0afd1cfe92c576339ac8d21592a7/tests/arrays_test.fbs#L19
+namespace MyGame.Example;
+
+enum TestEnum : byte { A, B, C }
+
+struct NestedStruct{
+  a:[int:2];
+  b:TestEnum;
+  c:[TestEnum:2];
+  d:[int64:2];
+}
+
+struct ArrayStruct{
+  a:float;
+  b:[int:0xF];
+  c:byte;
+  d:[NestedStruct:2];
+  e:int32;
+  f:[int64:2];
+}
+
+table ArrayTable{
+  a:ArrayStruct;
+}
+
+root_type ArrayTable;
+file_identifier "ARRT";
+file_extension "mon";
+---
+
+(source_file
+  (comment)
+  (namespace_decl
+    (full_ident
+      (identifier)
+      (identifier)))
+  (enum_decl
+    (identifier)
+    (type)
+    (enum_val_decl
+      (identifier))
+    (enum_val_decl
+      (identifier))
+    (enum_val_decl
+      (identifier)))
+  (type_decl
+    (identifier)
+    (field_decl
+      (identifier)
+      (type
+        (type)
+        (int_lit
+          (decimal_lit))))
+    (field_decl
+      (identifier)
+      (type
+        (full_ident
+          (identifier))))
+    (field_decl
+      (identifier)
+      (type
+        (type
+          (full_ident
+            (identifier)))
+        (int_lit
+          (decimal_lit))))
+    (field_decl
+      (identifier)
+      (type
+        (type)
+        (int_lit
+          (decimal_lit)))))
+  (type_decl
+    (identifier)
+    (field_decl
+      (identifier)
+      (type))
+    (field_decl
+      (identifier)
+      (type
+        (type)
+        (int_lit
+          (hex_lit))))
+    (field_decl
+      (identifier)
+      (type))
+    (field_decl
+      (identifier)
+      (type
+        (type
+          (full_ident
+            (identifier)))
+        (int_lit
+          (decimal_lit))))
+    (field_decl
+      (identifier)
+      (type))
+    (field_decl
+      (identifier)
+      (type
+        (type)
+        (int_lit
+          (decimal_lit)))))
+  (type_decl
+    (identifier)
+    (field_decl
+      (identifier)
+      (type
+        (full_ident
+          (identifier)))))
+  (root_decl
+    (identifier))
+  (file_identifier_decl
+    (string_constant))
+  (file_extension_decl
+    (string_constant)))

@@ -952,25 +952,50 @@
           }
         },
         {
-          "type": "FIELD",
-          "name": "array_type",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "STRING",
-                "value": "["
-              },
-              {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "["
+            },
+            {
+              "type": "FIELD",
+              "name": "array_type",
+              "content": {
                 "type": "SYMBOL",
                 "name": "type"
-              },
-              {
-                "type": "STRING",
-                "value": "]"
               }
-            ]
-          }
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SEQ",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": ":"
+                    },
+                    {
+                      "type": "FIELD",
+                      "name": "array_type_fixed_length",
+                      "content": {
+                        "type": "SYMBOL",
+                        "name": "int_lit"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "STRING",
+              "value": "]"
+            }
+          ]
         }
       ]
     },
