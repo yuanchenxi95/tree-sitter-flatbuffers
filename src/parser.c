@@ -19,7 +19,7 @@
 #define ALIAS_COUNT 0
 #define TOKEN_COUNT 62
 #define EXTERNAL_TOKEN_COUNT 0
-#define FIELD_COUNT 35
+#define FIELD_COUNT 36
 #define MAX_ALIAS_SEQUENCE_LENGTH 11
 #define PRODUCTION_ID_COUNT 85
 
@@ -792,33 +792,34 @@ enum ts_field_identifiers {
   field_enum_int_constant = 6,
   field_enum_key = 7,
   field_enum_name = 8,
-  field_enum_val_decl = 9,
-  field_field_and_value = 10,
-  field_field_key = 11,
-  field_field_type = 12,
-  field_field_value = 13,
-  field_field_without_type = 14,
-  field_file_extension_constant = 15,
-  field_file_identifier_constant = 16,
-  field_full_ident = 17,
-  field_include_name = 18,
-  field_metadata = 19,
-  field_namespace_ident = 20,
-  field_object_value = 21,
-  field_root_type_ident = 22,
-  field_rpc_method = 23,
-  field_rpc_method_name = 24,
-  field_rpc_name = 25,
-  field_rpc_parameter = 26,
-  field_rpc_return_type = 27,
-  field_scalar_value = 28,
-  field_single_value = 29,
-  field_string_constant = 30,
-  field_table_or_struct_name = 31,
-  field_union_field_decl = 32,
-  field_union_field_key = 33,
-  field_union_field_value = 34,
-  field_union_name = 35,
+  field_enum_type = 9,
+  field_enum_val_decl = 10,
+  field_field_and_value = 11,
+  field_field_key = 12,
+  field_field_type = 13,
+  field_field_value = 14,
+  field_field_without_type = 15,
+  field_file_extension_constant = 16,
+  field_file_identifier_constant = 17,
+  field_full_ident = 18,
+  field_include_name = 19,
+  field_metadata = 20,
+  field_namespace_ident = 21,
+  field_object_value = 22,
+  field_root_type_ident = 23,
+  field_rpc_method = 24,
+  field_rpc_method_name = 25,
+  field_rpc_name = 26,
+  field_rpc_parameter = 27,
+  field_rpc_return_type = 28,
+  field_scalar_value = 29,
+  field_single_value = 30,
+  field_string_constant = 31,
+  field_table_or_struct_name = 32,
+  field_union_field_decl = 33,
+  field_union_field_key = 34,
+  field_union_field_value = 35,
+  field_union_name = 36,
 };
 
 static const char * const ts_field_names[] = {
@@ -831,6 +832,7 @@ static const char * const ts_field_names[] = {
   [field_enum_int_constant] = "enum_int_constant",
   [field_enum_key] = "enum_key",
   [field_enum_name] = "enum_name",
+  [field_enum_type] = "enum_type",
   [field_enum_val_decl] = "enum_val_decl",
   [field_field_and_value] = "field_and_value",
   [field_field_key] = "field_key",
@@ -902,49 +904,49 @@ static const TSFieldMapSlice ts_field_map_slices[PRODUCTION_ID_COUNT] = {
   [39] = {.index = 65, .length = 3},
   [40] = {.index = 68, .length = 3},
   [41] = {.index = 71, .length = 2},
-  [42] = {.index = 73, .length = 2},
-  [43] = {.index = 75, .length = 2},
-  [44] = {.index = 77, .length = 4},
-  [45] = {.index = 81, .length = 3},
-  [46] = {.index = 84, .length = 4},
-  [47] = {.index = 88, .length = 4},
-  [48] = {.index = 92, .length = 4},
-  [49] = {.index = 96, .length = 4},
-  [50] = {.index = 100, .length = 4},
-  [51] = {.index = 104, .length = 4},
-  [52] = {.index = 108, .length = 1},
-  [53] = {.index = 109, .length = 1},
-  [54] = {.index = 110, .length = 3},
-  [55] = {.index = 113, .length = 3},
-  [56] = {.index = 116, .length = 2},
-  [57] = {.index = 118, .length = 1},
-  [58] = {.index = 119, .length = 3},
-  [59] = {.index = 122, .length = 2},
-  [60] = {.index = 124, .length = 3},
-  [61] = {.index = 127, .length = 5},
-  [62] = {.index = 132, .length = 3},
-  [63] = {.index = 135, .length = 5},
-  [64] = {.index = 140, .length = 5},
-  [65] = {.index = 145, .length = 5},
-  [66] = {.index = 150, .length = 3},
-  [67] = {.index = 153, .length = 4},
-  [68] = {.index = 157, .length = 3},
-  [69] = {.index = 160, .length = 4},
-  [70] = {.index = 164, .length = 4},
-  [71] = {.index = 168, .length = 4},
-  [72] = {.index = 172, .length = 6},
-  [73] = {.index = 178, .length = 3},
-  [74] = {.index = 181, .length = 4},
-  [75] = {.index = 185, .length = 4},
-  [76] = {.index = 189, .length = 3},
-  [77] = {.index = 192, .length = 5},
-  [78] = {.index = 197, .length = 1},
-  [79] = {.index = 198, .length = 5},
-  [80] = {.index = 203, .length = 2},
-  [81] = {.index = 205, .length = 5},
-  [82] = {.index = 210, .length = 4},
-  [83] = {.index = 214, .length = 4},
-  [84] = {.index = 218, .length = 5},
+  [42] = {.index = 73, .length = 3},
+  [43] = {.index = 76, .length = 2},
+  [44] = {.index = 78, .length = 4},
+  [45] = {.index = 82, .length = 3},
+  [46] = {.index = 85, .length = 4},
+  [47] = {.index = 89, .length = 4},
+  [48] = {.index = 93, .length = 4},
+  [49] = {.index = 97, .length = 4},
+  [50] = {.index = 101, .length = 4},
+  [51] = {.index = 105, .length = 4},
+  [52] = {.index = 109, .length = 1},
+  [53] = {.index = 110, .length = 1},
+  [54] = {.index = 111, .length = 3},
+  [55] = {.index = 114, .length = 3},
+  [56] = {.index = 117, .length = 2},
+  [57] = {.index = 119, .length = 1},
+  [58] = {.index = 120, .length = 4},
+  [59] = {.index = 124, .length = 2},
+  [60] = {.index = 126, .length = 4},
+  [61] = {.index = 130, .length = 5},
+  [62] = {.index = 135, .length = 4},
+  [63] = {.index = 139, .length = 5},
+  [64] = {.index = 144, .length = 5},
+  [65] = {.index = 149, .length = 5},
+  [66] = {.index = 154, .length = 3},
+  [67] = {.index = 157, .length = 4},
+  [68] = {.index = 161, .length = 3},
+  [69] = {.index = 164, .length = 5},
+  [70] = {.index = 169, .length = 5},
+  [71] = {.index = 174, .length = 5},
+  [72] = {.index = 179, .length = 6},
+  [73] = {.index = 185, .length = 3},
+  [74] = {.index = 188, .length = 4},
+  [75] = {.index = 192, .length = 4},
+  [76] = {.index = 196, .length = 3},
+  [77] = {.index = 199, .length = 6},
+  [78] = {.index = 205, .length = 1},
+  [79] = {.index = 206, .length = 5},
+  [80] = {.index = 211, .length = 2},
+  [81] = {.index = 213, .length = 5},
+  [82] = {.index = 218, .length = 4},
+  [83] = {.index = 222, .length = 4},
+  [84] = {.index = 226, .length = 5},
 };
 
 static const TSFieldMapEntry ts_field_map_entries[] = {
@@ -1064,192 +1066,200 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
     {field_field_type, 2},
   [73] =
     {field_enum_name, 1},
+    {field_enum_type, 3},
     {field_enum_val_decl, 5},
-  [75] =
+  [76] =
     {field_documentation, 0, .inherited = true},
     {field_enum_key, 1},
-  [77] =
+  [78] =
     {field_field_without_type, 3},
     {field_field_without_type, 4},
     {field_field_without_type, 5},
     {field_union_name, 1},
-  [81] =
+  [82] =
     {field_documentation, 0, .inherited = true},
     {field_union_field_key, 1},
     {field_union_field_value, 3},
-  [84] =
+  [85] =
     {field_metadata, 2},
     {field_union_field_decl, 4},
     {field_union_field_decl, 5, .inherited = true},
     {field_union_name, 1},
-  [88] =
+  [89] =
     {field_field_without_type, 4},
     {field_field_without_type, 5},
     {field_metadata, 2},
     {field_union_name, 1},
-  [92] =
+  [93] =
     {field_documentation, 0, .inherited = true},
     {field_union_field_decl, 4},
     {field_union_field_decl, 5, .inherited = true},
     {field_union_name, 2},
-  [96] =
+  [97] =
     {field_documentation, 0, .inherited = true},
     {field_field_without_type, 4},
     {field_field_without_type, 5},
     {field_union_name, 2},
-  [100] =
+  [101] =
     {field_documentation, 0, .inherited = true},
     {field_metadata, 3},
     {field_union_field_decl, 5},
     {field_union_name, 2},
-  [104] =
+  [105] =
     {field_documentation, 0, .inherited = true},
     {field_field_without_type, 5},
     {field_metadata, 3},
     {field_union_name, 2},
-  [108] =
-    {field_object_value, 0},
   [109] =
-    {field_single_value, 0},
+    {field_object_value, 0},
   [110] =
+    {field_single_value, 0},
+  [111] =
     {field_field_key, 0},
     {field_field_type, 2},
     {field_metadata, 3},
-  [113] =
+  [114] =
     {field_documentation, 0, .inherited = true},
     {field_field_key, 1},
     {field_field_type, 3},
-  [116] =
+  [117] =
     {field_enum_int_constant, 2},
     {field_enum_key, 0},
-  [118] =
-    {field_enum_val_decl, 1},
   [119] =
+    {field_enum_val_decl, 1},
+  [120] =
     {field_enum_name, 1},
+    {field_enum_type, 3},
     {field_enum_val_decl, 5},
     {field_enum_val_decl, 6, .inherited = true},
-  [122] =
+  [124] =
     {field_enum_val_decl, 0, .inherited = true},
     {field_enum_val_decl, 1, .inherited = true},
-  [124] =
+  [126] =
     {field_enum_name, 1},
+    {field_enum_type, 3},
     {field_enum_val_decl, 6},
     {field_metadata, 4},
-  [127] =
+  [130] =
     {field_field_without_type, 4},
     {field_field_without_type, 5},
     {field_field_without_type, 6},
     {field_metadata, 2},
     {field_union_name, 1},
-  [132] =
+  [135] =
     {field_documentation, 0, .inherited = true},
     {field_enum_name, 2},
+    {field_enum_type, 4},
     {field_enum_val_decl, 6},
-  [135] =
+  [139] =
     {field_documentation, 0, .inherited = true},
     {field_field_without_type, 4},
     {field_field_without_type, 5},
     {field_field_without_type, 6},
     {field_union_name, 2},
-  [140] =
+  [144] =
     {field_documentation, 0, .inherited = true},
     {field_metadata, 3},
     {field_union_field_decl, 5},
     {field_union_field_decl, 6, .inherited = true},
     {field_union_name, 2},
-  [145] =
+  [149] =
     {field_documentation, 0, .inherited = true},
     {field_field_without_type, 5},
     {field_field_without_type, 6},
     {field_metadata, 3},
     {field_union_name, 2},
-  [150] =
+  [154] =
     {field_field_key, 0},
     {field_field_type, 2},
     {field_field_value, 4},
-  [153] =
+  [157] =
     {field_documentation, 0, .inherited = true},
     {field_field_key, 1},
     {field_field_type, 3},
     {field_metadata, 4},
-  [157] =
+  [161] =
     {field_documentation, 0, .inherited = true},
     {field_enum_int_constant, 3},
     {field_enum_key, 1},
-  [160] =
+  [164] =
     {field_enum_name, 1},
+    {field_enum_type, 3},
     {field_enum_val_decl, 6},
     {field_enum_val_decl, 7, .inherited = true},
     {field_metadata, 4},
-  [164] =
+  [169] =
     {field_documentation, 0, .inherited = true},
     {field_enum_name, 2},
+    {field_enum_type, 4},
     {field_enum_val_decl, 6},
     {field_enum_val_decl, 7, .inherited = true},
-  [168] =
+  [174] =
     {field_documentation, 0, .inherited = true},
     {field_enum_name, 2},
+    {field_enum_type, 4},
     {field_enum_val_decl, 7},
     {field_metadata, 5},
-  [172] =
+  [179] =
     {field_documentation, 0, .inherited = true},
     {field_field_without_type, 5},
     {field_field_without_type, 6},
     {field_field_without_type, 7},
     {field_metadata, 3},
     {field_union_name, 2},
-  [178] =
+  [185] =
     {field_array_value, 0},
     {field_array_value, 2},
     {field_array_value_item, 1},
-  [181] =
+  [188] =
     {field_field_key, 0},
     {field_field_type, 2},
     {field_field_value, 4},
     {field_metadata, 5},
-  [185] =
+  [192] =
     {field_documentation, 0, .inherited = true},
     {field_field_key, 1},
     {field_field_type, 3},
     {field_field_value, 5},
-  [189] =
+  [196] =
     {field_rpc_method_name, 0},
     {field_rpc_parameter, 2},
     {field_rpc_return_type, 5},
-  [192] =
+  [199] =
     {field_documentation, 0, .inherited = true},
     {field_enum_name, 2},
+    {field_enum_type, 4},
     {field_enum_val_decl, 7},
     {field_enum_val_decl, 8, .inherited = true},
     {field_metadata, 5},
-  [197] =
+  [205] =
     {field_array_value_item, 1},
-  [198] =
+  [206] =
     {field_array_value, 0},
     {field_array_value, 2},
     {field_array_value, 3},
     {field_array_value_item, 1},
     {field_array_value_item, 2, .inherited = true},
-  [203] =
+  [211] =
     {field_array_value_item, 0, .inherited = true},
     {field_array_value_item, 1, .inherited = true},
-  [205] =
+  [213] =
     {field_documentation, 0, .inherited = true},
     {field_field_key, 1},
     {field_field_type, 3},
     {field_field_value, 5},
     {field_metadata, 6},
-  [210] =
+  [218] =
     {field_metadata, 6},
     {field_rpc_method_name, 0},
     {field_rpc_parameter, 2},
     {field_rpc_return_type, 5},
-  [214] =
+  [222] =
     {field_documentation, 0, .inherited = true},
     {field_rpc_method_name, 1},
     {field_rpc_parameter, 3},
     {field_rpc_return_type, 6},
-  [218] =
+  [226] =
     {field_documentation, 0, .inherited = true},
     {field_metadata, 7},
     {field_rpc_method_name, 1},

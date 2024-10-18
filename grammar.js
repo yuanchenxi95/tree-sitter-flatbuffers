@@ -19,6 +19,7 @@ const FIELD_KEY = {
   enum_int_constant: "enum_int_constant",
   enum_key: "enum_key",
   enum_name: "enum_name",
+  enum_type: "enum_type",
   enum_val_decl: "enum_val_decl",
   field_and_value: "field_and_value",
   field_key: "field_key",
@@ -111,7 +112,12 @@ module.exports = grammar({
     enum_decl: ($) =>
       seq(
         repeat(field(FIELD_KEY.documentation, $.documentation)),
-        seq("enum", field(FIELD_KEY.enum_name, $.identifier), ":", $.type),
+        seq(
+          "enum",
+          field(FIELD_KEY.enum_name, $.identifier),
+          ":",
+          field(FIELD_KEY.enum_type, $.type),
+        ),
         optional(field(FIELD_KEY.metadata, $.metadata)),
         "{",
         comma_separate(field(FIELD_KEY.enum_val_decl, $.enum_val_decl)),

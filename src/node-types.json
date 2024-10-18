@@ -63,6 +63,16 @@
           }
         ]
       },
+      "enum_type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type",
+            "named": true
+          }
+        ]
+      },
       "enum_val_decl": {
         "multiple": true,
         "required": true,
@@ -83,16 +93,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "type",
-          "named": true
-        }
-      ]
     }
   },
   {
