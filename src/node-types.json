@@ -128,6 +128,16 @@
             "named": true
           }
         ]
+      },
+      "metadata": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "metadata",
+            "named": true
+          }
+        ]
       }
     }
   },

@@ -197,6 +197,7 @@ module.exports = grammar({
         repeat(field(FIELD_KEY.documentation, $.documentation)),
         field(FIELD_KEY.enum_key, $.identifier),
         optional(seq("=", field(FIELD_KEY.enum_int_constant, $.int_constant))),
+        optional(field(FIELD_KEY.metadata, $.metadata)),
       ),
 
     field_decl: ($) =>

@@ -1,7 +1,7 @@
 [package]
 name = "tree-sitter-flatbuffers"
 description = "Flatbuffers grammar for tree-sitter"
-version = "0.1.5"
+version = "0.1.6"
 authors = ["yuanchenxi95 <yuanchenxi95@gmail.com>"]
 license = "MIT"
 readme = "README.md"
