@@ -190,17 +190,21 @@
           }
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "table"
-            },
-            {
-              "type": "STRING",
-              "value": "struct"
-            }
-          ]
+          "type": "FIELD",
+          "name": "table_or_struct_declaration",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "table"
+              },
+              {
+                "type": "STRING",
+                "value": "struct"
+              }
+            ]
+          }
         },
         {
           "type": "FIELD",

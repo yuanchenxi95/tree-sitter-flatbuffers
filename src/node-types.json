@@ -732,6 +732,20 @@
           }
         ]
       },
+      "table_or_struct_declaration": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "struct",
+            "named": false
+          },
+          {
+            "type": "table",
+            "named": false
+          }
+        ]
+      },
       "table_or_struct_name": {
         "multiple": false,
         "required": true,

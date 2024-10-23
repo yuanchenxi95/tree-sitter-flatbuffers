@@ -45,6 +45,7 @@ const FIELD_KEY = {
   scalar_value: "scalar_value",
   single_value: "single_value",
   string_constant: "string_constant",
+  table_or_struct_declaration: "table_or_struct_declaration",
   table_or_struct_name: "table_or_struct_name",
   union_field_decl: "union_field_decl",
   union_field_key: "union_field_key",
@@ -102,7 +103,7 @@ module.exports = grammar({
     type_decl: ($) =>
       seq(
         repeat(field(FIELD_KEY.documentation, $.documentation)),
-        choice("table", "struct"),
+        field(FIELD_KEY.table_or_struct_declaration, choice("table", "struct")),
         field(FIELD_KEY.table_or_struct_name, $.identifier),
         optional(field(FIELD_KEY.metadata, $.metadata)),
         "{",

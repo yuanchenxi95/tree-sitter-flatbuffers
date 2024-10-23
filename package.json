@@ -12,6 +12,7 @@
   "scripts": {
     "test": "npx tree-sitter test",
     "generate": "npx tree-sitter generate",
+    "build": "npx tree-sitter build",
     "format": "npx prettier . --write"
   },
   "devDependencies": {
