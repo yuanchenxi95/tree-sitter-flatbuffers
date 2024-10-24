@@ -722,6 +722,16 @@
           }
         ]
       },
+      "field_declaration": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "field_decl",
+            "named": true
+          }
+        ]
+      },
       "metadata": {
         "multiple": false,
         "required": false,
@@ -756,16 +766,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "field_decl",
-          "named": true
-        }
-      ]
     }
   },
   {

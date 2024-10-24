@@ -237,8 +237,12 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "SYMBOL",
-            "name": "field_decl"
+            "type": "FIELD",
+            "name": "field_declaration",
+            "content": {
+              "type": "SYMBOL",
+              "name": "field_decl"
+            }
           }
         },
         {

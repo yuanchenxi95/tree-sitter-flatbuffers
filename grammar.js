@@ -23,6 +23,7 @@ const FIELD_KEY = {
   enum_type: "enum_type",
   enum_val_decl: "enum_val_decl",
   field_and_value: "field_and_value",
+  field_declaration: "field_declaration",
   field_key: "field_key",
   field_type: "field_type",
   field_value: "field_value",
@@ -107,7 +108,7 @@ module.exports = grammar({
         field(FIELD_KEY.table_or_struct_name, $.identifier),
         optional(field(FIELD_KEY.metadata, $.metadata)),
         "{",
-        repeat($.field_decl),
+        repeat(field(FIELD_KEY.field_declaration, $.field_decl)),
         "}",
       ),
 
